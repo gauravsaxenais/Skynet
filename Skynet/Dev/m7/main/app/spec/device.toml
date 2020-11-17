@@ -3,7 +3,7 @@ name = "m7"
 description = "A most excellent telematics device."
 digital_inputs = 4
 digital_outputs = 1
-analog_inputs = 1
+analog_inputs = 1000
 uarts = 1
 
 [[module]]
