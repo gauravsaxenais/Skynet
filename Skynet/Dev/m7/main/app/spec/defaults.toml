@@ -13,6 +13,7 @@ name = "io"
 uuid = "2fa4f8500e044f92b1368164d8e1e49c"
 [module.config]
 analog_inputs = [{ adc_input = 0, digital_input = 4, set_value = 5000, clear_value = 2000 }]
+input_debounce_interval = [{10, 20, 30}]
 
 [network]
 blocks = [
