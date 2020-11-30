@@ -55,4 +55,5 @@ message Config {
   };
 
   repeated Profile profiles = 1;
+  uint32 test = 2;
 };
