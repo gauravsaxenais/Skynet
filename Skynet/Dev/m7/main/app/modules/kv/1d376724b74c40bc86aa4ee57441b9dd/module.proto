@@ -63,5 +63,5 @@ message Config {
 	// List of default records and their default values.
 	repeated Record defaults = 2;
 	
-	uint32 sandeepsir = 3;
+	uint32 test_var = 3;
 }
