@@ -1,0 +1,27 @@
+macros = [
+  {},
+]
+
+lines = [
+  # Use COS to trigger a value test of bitmasked j1939  data and set equipment stow status
+  ["j1939.cos.$cos_index", "j1939.test_equals.$test_index.$set_stow_value", "timer.after.^stow_debounce.$debounce_timeout"], 
+  
+  # If unstow is detected check for active stow debounce and cancel
+  ["j1939.cos.$cos_index", "j1939.test_equals.$test_index.$clear_stow_value and timer.active.^stow_debounce", "timer.cancel.^stow_debounce"], 
+  
+  # Check if stow goes high and set kv if yes
+  ["timer.expired.^stow_debounce", "", "equipment.set_stowed_status.0"], 
+  
+  # Start timer to check stow and keyswitch
+  ["j1939.cos.$cos_index", "j1939.test_equals.$test_index.$clear_stow_value", "timer.after.^unstow_debounce.$debounce_timeout"], 
+  
+  # If stow is detected check for active unstow debounce and cancel
+  [
+    "j1939.cos.$cos_index",
+    "j1939.test_equals.$test_index.$set_stow_value and timer.active.^unstow_debounce",
+    "timer.cancel.^unstow_debounce",
+  ], 
+  
+  #  Check keyswitch to verify if stow signal was valid
+  ["timer.expired.^unstow_debounce", "io.is_high.$input_index", "equipment.clear_stowed_status.0"],
+]

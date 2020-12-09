@@ -1,0 +1,8 @@
+macros = [
+    {}
+]
+
+lines = [
+    # Send J1939 CoS messages.
+    ["j1939.cos.$index", "", "report.send_event.$report_index.$signal"], 
+]

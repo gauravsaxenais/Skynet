@@ -1,0 +1,17 @@
+macros = [
+  {},
+]
+
+lines = [
+  # Set stow status on stowed input high
+  ["io.input_high.$stowed_input", "", "equipment.set_stowed_status.0"], 
+  
+  # Start timer to check stow and keyswitch
+  ["io.input_low.$stowed_input", "", "timer.after.^unstow_debounce.$debounce_timeout"], 
+  
+  # Check for input high during unstow debounce, cancel if detected
+  ["io.input_high.$stowed_input", "timer.active.^unstow_debounce", "timer.cancel.^unstow_debounce"], 
+  
+  #  Check keyswitch to verify if stow signal was valid
+  ["timer.expired.^unstow_debounce", "io.is_high.$input_index", "equipment.clear_stowed_status.0"],
+]

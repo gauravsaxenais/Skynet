@@ -1,0 +1,12 @@
+macros = [
+  {},
+]
+lines = [
+  # Start and stop auto checkout
+  # if input index low AND stowed then start auto checkout
+  # if input index high OR unstowed then stop auto checkout
+  ["equipment.stowed.0", "io.is_low.$input_index", "keypad.start_autocheckout.0"],
+  ["io.input_low.$input_index", "equipment.is_stowed.0","keypad.start_autocheckout.0"],
+  ["equipment.unstowed.0", "", "keypad.stop_autocheckout.0"],
+  ["io.input_high.$input_index","", "keypad.stop_autocheckout.0"],
+]

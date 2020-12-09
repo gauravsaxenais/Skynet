@@ -1,0 +1,9 @@
+macros = [
+    {}
+]
+
+lines = [
+    # Perform Read based on connection.
+    ["j1939.connected.0", "", "timer.after.^delay.$delay_interval"], 
+    ["timer.expired.^delay", "", "j1939.memory_read.$index"],
+]

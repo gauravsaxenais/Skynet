@@ -1,0 +1,10 @@
+macros = [
+	{},
+]
+
+lines = [
+	["action.start.$momentary_on", "", "timer.after.^momentary.$frequency"],
+	["action.start.$momentary_on", "io.is_low,$output", "io.set_high.$output"],
+	["action.start.$momentary_on", "", "action.complete.$momentary_on"],
+	["timer.expired.^momentary", "io.is_high.$output", "io.set_low.$output"],
+]

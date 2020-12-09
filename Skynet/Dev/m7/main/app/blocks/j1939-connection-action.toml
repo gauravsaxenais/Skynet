@@ -1,0 +1,11 @@
+macros = [
+    {}
+]
+
+lines = [
+    ["action.start.$index", "j1939.is_connected.0", "action.complete.$index"],
+    ["action.start.$index", "not j1939.is_connected.0", "timer.every.^timeout.$frequency"],
+    ["timer.expired.^timeout", "not j1939.is_connected.0", "action.heartbeat.$index"],
+    ["j1939.connected.0", "action.is_running.$index", "action.complete.$index"],
+    ["j1939.connected.0", "timer.active.^timeout", "timer.cancel.^timeout"],
+]
