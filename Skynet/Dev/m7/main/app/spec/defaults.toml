@@ -39,7 +39,7 @@ defaults = [
   {key = 5, value = 0}, # Used for accumulator 1 key.
 ]
 sync_frequency_minutes = 15
-sandeepsir=30
+test_var=30
 
 [[module]]
 name = "report"
