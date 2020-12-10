@@ -54,5 +54,7 @@ message Config {
     uint32 delay_s = 3;
   };
 
+  
   repeated Profile profiles = 1;
+  uint32 test = 2;
 };
