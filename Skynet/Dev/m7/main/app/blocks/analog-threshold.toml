@@ -3,7 +3,7 @@ macros = [
 ]
 
 arguments = [
-	{ name = "A_low", label = "12V Low", description = "12V min value.", datatype = "integer", min = "0", max = "200" },
+	{ name = "Z_low", label = "12V Low", description = "12V min value.", datatype = "integer", min = "0", max = "200" },
 	{ name = "A_low", label = "12V Low", description = "12V min value.", datatype = "integer", min = "100", max = "300" },
     { name = "A_high", label = "12V High", description = "12V max value.", datatype = "integer", min = "100", max = "10000" },
     { name = "B_low", label = "24V Low", description = "24V min value.", datatype = "boolean" },
