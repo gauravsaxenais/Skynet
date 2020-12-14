@@ -7,7 +7,7 @@ profiles = [
   {state = 1, wakeup_mask = 39, delay_s = 300}, # 5 min timer before sleep.
   {state = 2, wakeup_mask = 3, delay_s = 120}, # 2 min timer before hibernate.
 ]
-
+test123 = 10
 
 [[module]]
 name = "timer"
