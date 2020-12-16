@@ -1,9 +1,10 @@
-﻿[device]
+
+[device]
 name = "m7"
-description = "A most excellent telematics device."
-digital_inputs = 4
+description = "The M7 is ZTR's answer to the M8! Smaller, faster, better in everyway :)"
+digital_inputs = 3
 digital_outputs = 1
-analog_inputs = 1000
+analog_inputs = 1
 uarts = 1
 
 [[module]]
@@ -24,7 +25,7 @@ uuid = "2fa4f8500e044f92b1368164d8e1e49c"
 
 [[module]]
 name = "kv"
-uuid = "1d376724b74c40bc86aa4ee57441b9dd"
+uuid = "456856a298a94ef694ac809835881020"
 
 [[module]]
 name = "report"
@@ -36,7 +37,7 @@ uuid = "e757221195064b5ba9a93be57b2967b1"
 
 [[module]]
 name = "j1939"
-uuid = "e85bf76ea1cb449a8fcbfec5da8b50fb"
+uuid = "ac0e4b9c567a4f629b6f472d9ca138ce"
 
 [[module]]
 name = "ble"
@@ -53,3 +54,23 @@ uuid = "c609d032bc7844aba78ef3044d9fbec5"
 [[module]]
 name = "gps"
 uuid = "edce8ad7992042ecb031bff36e195163"
+
+[[module]]
+name = "action"
+uuid = "9003aaa09a0c47fc8e24e738499835ef"
+
+[[module]]
+name = "command"
+uuid = "fffe404e84ae497aab2625818a2fcbfa"
+
+[[module]]
+name = "equipment"
+uuid = "f3e71404564c4adca6eb6d6d1db01f28"
+
+[[module]]
+name = "flags"
+uuid = "87baf4f23d1b4f1fb71d1900a3177e06"
+
+[[module]]
+name = "keypad"
+uuid = "11ff3fe0b38849398795d83791fdc7be"
