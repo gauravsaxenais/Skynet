@@ -1,8 +1,0 @@
-macros = [
-    {}
-]
-
-lines = [
-    # Send in GPS report once per wake cycle upon acquiring a GPS Fix.
-    ["gps.fix_acquired.0", "not report.last_sent_within.$report_index.0", "report.send_event.$report_index.$signal"],
-]

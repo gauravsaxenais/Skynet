@@ -1,7 +1,0 @@
-macros = [
-    {}
-]
-
-arguments = [ 
-	{ name = "Enable", label = "", description = "", datatype = "integer", }
-]

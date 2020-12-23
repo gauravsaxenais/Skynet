@@ -1,8 +1,0 @@
-macros = [
-    {}
-]
-
-lines = [
-    # Perform Read based appropriate Tak CoS.
-    ["j1939.tak_memory_cos.$address.$pointer", "", "j1939.memory_read.$read_index"], 
-]

@@ -1,8 +1,0 @@
-macros = [
-    {}
-]
-
-lines = [
-    # Send low threshold on disconnect.
-    ["j1939.disconnected.0", "j1939.is_above_or_equal_threshold.$index and $off_condition", "report.send_event.$report_index.0"],
-]
