@@ -1,0 +1,9 @@
+macros = [
+    {}
+]
+
+lines = [
+    # Send in an ident message on cold boots.
+    ["power.power_up.0", "", "timer.after.^0.$duration"],
+    ["timer.expired.^0", "", "report.send.$report_index"],
+]

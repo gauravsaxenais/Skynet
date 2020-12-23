@@ -1,0 +1,4 @@
+arguments = [
+	{ name = "active_profile", label = "Active profile", description = "test descp", datatype = "boolean" },
+    { name = "sleep_profile", label = "Sleep profile", description = "test descp", datatype = "boolean" }
+]

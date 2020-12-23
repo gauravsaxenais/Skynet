@@ -1,0 +1,8 @@
+macros = [
+    {}
+]
+lines = [
+    # Inform equipment of power CoS
+    ["io.input_high.$input", "", "equipment.inform_power.$on_signal"],
+    ["io.input_low.$input", "", "equipment.inform_power.$off_signal"],
+ ]

@@ -1,0 +1,9 @@
+macros = [
+    {}
+]
+
+lines = [
+    # Send J1939 threshold messages.
+    ["j1939.below_threshold.$index", "", "report.send_event.$report_index.0"],
+    ["j1939.above_or_equal_threshold.$index", "", "report.send_event.$report_index.1"],
+]

@@ -1,0 +1,12 @@
+macros = [
+    {}
+]
+
+lines = [
+    # Send J1939 fault resync message if it has not already been sent.
+    ["j1939.connected.0", "$enable_condition and not report.last_sent_within.$resync_report_index.0 and not timer.active.^resync", "timer.after.^resync.30000"],
+    ["timer.expired.^resync", "", "report.send_event.$resync_report_index.0"],
+
+    # Send J1939 fault messages on every other fault status update.
+    ["j1939.fault_status_update.0", "not timer.active.^resync", "report.send_event.$fault_report_index.0"],
+]

@@ -1,0 +1,12 @@
+macros = [
+    {}
+]
+
+lines = [
+    # Send in site survey message when timer expires.
+    ["$enable", "power.is_restricted_mode.0", "timer.every.^survey.$frequency"],
+    ["timer.expired.^survey", "power.is_restricted_mode.0", "ble.site_survey.0"],
+
+    # Disable timer upon recieving disable event.
+    ["$disable", "timer.active.^survey", "timer.cancel.^survey"],
+]

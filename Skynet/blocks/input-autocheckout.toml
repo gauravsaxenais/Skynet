@@ -1,0 +1,8 @@
+macros = [
+    {}
+]
+
+lines = [
+    ["io.input_high.$input", "", "keypad.stop_autocheckout.0"],
+    ["io.input_low.$input", "", "keypad.start_autocheckout.0"],
+]

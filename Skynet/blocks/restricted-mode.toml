@@ -1,0 +1,14 @@
+macros = [
+    {}
+]
+
+lines = [
+    # Arm recurring timer for checking Restricted Mode status.
+    ["power.power_or_wake_up.0", "", "timer.every.^rm_update.$frequency"],
+
+    # Set Restricted Mode register values when timer expires.
+    ["timer.expired.^rm_update", "power.is_restricted_mode.0", "kv.set.$rm_register.$unrestricted_value"],
+    ["timer.expired.^rm_update", "power.is_restricted_mode.1 or power.is_restricted_mode.2", "kv.set.$rm_register.$restricted_value"],
+
+    # TODO: Send in register CoS message.
+]

@@ -1,0 +1,16 @@
+macros = [
+    {}
+]
+
+lines = [
+    # J1939 enable and disable.
+    ["$enable", "", "j1939.enable.0"],
+    ["$disable", "", "j1939.disable.0"],
+
+    # Send J1939 comm status.
+    ["j1939.connected.0", "", "report.send_event.$comm_status_index.1"],
+    ["j1939.disconnected.0", "$enable_condition", "report.send_event.$comm_status_index.0"],
+
+    # Reset CAN on input-1 being toggled.
+    ["$can_reset", "", "j1939.reset_can.0"]
+]
