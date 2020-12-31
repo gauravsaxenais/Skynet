@@ -53,8 +53,8 @@ message Config {
     // How long to wait before applying this profile in seconds.
     uint32 delay_s = 3;
   };
-
-  
+ 
   repeated Profile profiles = 1;
   uint32 test123 = 2;
+  bool test = 3;
 };
