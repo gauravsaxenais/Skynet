@@ -1,7 +1,11 @@
 macros = [
     {}
 ]
-
+arguments = [
+    { name = "cos_index", label = "COS Index", description = "The index where a change of state occured.", type = "integer", min = "0", max = "4294967295" },
+    { name = "report_index", label = "Report Index", description = "The index where memory data is stored.", type = "integer", min = "0", max = "4294967295" },
+    { name = "event_signal", label = "Event Signal", description = "The event signal to be reported.", type = "integer", min = "0", max = "4294967295" }
+] 
 lines = [
     # Catch the change of state for Tak.
     ["j1939.cos.$cos_index", "", "j1939.tak_value_updated.$cos_index"], 

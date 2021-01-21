@@ -1,7 +1,11 @@
 macros = [
   {},
 ]
+arguments = [
+    { name = "stowed_input", label = "Stowed Input", description = "The integer used to define a change of state to trigger a value test of bitmasked j1939 data and equipement stow status.", type = "integer", min = "0", max = "9223372036854775808" },
+    { name = "debounce_timeout", label = "Debounce Timeout", description = "The time is miliseconds to be waited for debounced change of states.", type = "integer", min = "0", max = "4294967295" },
 
+]
 lines = [
   # Set stow status on stowed input high
   ["io.input_high.$stowed_input", "", "equipment.set_stowed_status.0"], 

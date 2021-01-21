@@ -1,7 +1,10 @@
 macros = [
     {}
 ]
-
+arguments = [
+    { name = "delay_interval", label = "Delay Interval", description = "The time in milliseconds needed to allow the device to boot up.", type = "integer", min = "0", max = "4294967295" },
+    { name = "index", label = "Index (Read)", description = "The index of the address we want to perform a read on.", type = "integer", min = "0", max = "4294967295" },
+] 
 lines = [
     # Perform Read based on connection.
     ["j1939.connected.0", "", "timer.after.^delay.$delay_interval"], 

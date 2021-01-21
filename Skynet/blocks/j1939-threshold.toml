@@ -1,7 +1,10 @@
 macros = [
     {}
 ]
-
+arguments = [
+    { name = "index", label = "Index", description = "The integer index denoting the value the j1939 threshold.", type = "integer", min = "0", max = "4294967295" },
+    { name = "report_index", label = "Report Index", description = "The index where j9139 memory data is stored.", type = "integer", min = "0", max = "4294967295" },
+] 
 lines = [
     # Send J1939 threshold messages.
     ["j1939.below_threshold.$index", "", "report.send_event.$report_index.0"],

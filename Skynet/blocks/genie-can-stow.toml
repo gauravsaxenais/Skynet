@@ -1,9 +1,17 @@
 macros = [
   {},
 ]
+arguments = [
+    { name = "cos_index", label = "COS Index", description = "The integer which defines a change of state to trigger a value test of bitmasked j1939 data and equipement stow status.", type = "integer", min = "0", max = "4294967295" },
+    { name = "test_index", label = "Test Index", description = "The integer value of bitmasked j1939 data.", type = "integer", min = "0", max = "4294967295" },
+    { name = "set_stow_value", label = "Set Stow Value", description = "The integer denoting the stow value.", type = "integer", min = "0", max = "4294967295" },
+    { name = "debounce_timeout", label = "Debounce Timeout", description = "The time in milliseconds to wait before sending a report message.", type = "integer", min = "0", max = "4294967295"},
+    { name = "clear_stow_value", label = "Clear Stow Value", description = "The decimal value of the binary bit mask used to clear the stow value.",type="integer", min = "0", max = "4294967295" },
+    { name = "input_index", label = "Input Index", description = "The integer which denotes the 0 based harness pin number.", type = "integer",  min = "0", max = "9223372036854775808" },
 
+]
 lines = [
-  # Use COS to trigger a value test of bitmasked j1939  data and set equipment stow status
+  # Use COS to trigger a value test of bitmasked j1939 data and set equipment stow status
   ["j1939.cos.$cos_index", "j1939.test_equals.$test_index.$set_stow_value", "timer.after.^stow_debounce.$debounce_timeout"], 
   
   # If unstow is detected check for active stow debounce and cancel

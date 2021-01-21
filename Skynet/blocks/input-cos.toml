@@ -1,6 +1,12 @@
 macros = [
     {}
 ]
+arguments = [
+    { name = "delay_interval", label = "Delay Interval", description = "The time in milliseconds needed to allow the device to boot up.", type = "integer", min = "0", max = "4294967295" },
+    { name = "input", label = "Input", description = "The integer which denotes the 0 based harness pin number.", type = "integer", min = "0", max = "9223372036854775808" },
+    { name = "report_index", label = "Report Index", description = "The report descriptor to send in on changes of state", type = "integer", min = "0", max = "4294967295" },
+    { name = "event_signal", label = "Event Signal", description = "The time in milliseconds to wait before sending a COS report message.", type = "integer", min = "0", max = "4294967295" }
+] 
 lines = [
    # Start timer to allow device to boot up.
    ["power.power_or_wake_up.0", "", "timer.after.^bootup_delay.$delay_interval"],

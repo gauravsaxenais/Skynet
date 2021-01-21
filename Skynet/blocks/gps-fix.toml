@@ -1,7 +1,11 @@
 macros = [
     {}
 ]
+arguments = [
+    { name = "report_index", label = "Report Index", description = "The report descriptor to send in on changes of state", type = "integer", min = "0", max = "4294967295"},
+    { name = "signal", label = "Signal", description = "The boolean used to determine if the GPS report is to be sent.", type = "boolean"},
 
+]
 lines = [
     # Send in GPS report once per wake cycle upon acquiring a GPS Fix.
     ["gps.fix_acquired.0", "not report.last_sent_within.$report_index.0", "report.send_event.$report_index.$signal"],

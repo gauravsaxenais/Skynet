@@ -1,6 +1,11 @@
 macros = [
     {}
 ]
+arguments = [
+    { name = "input", label = "Input", description = "The boolean which selects the index for the input that represents equipment power on.", type = "integer", min = "0", max = "9223372036854775808" },
+    { name = "on_signal", label = "ON Signal", description = "The boolean which indicates ON polarity.", type = "boolean" },
+    { name = "off_signal", label = "OFF Signal", description = "The boolean which indicates OFF polarity.", type = "boolean" }
+]
 lines = [
     # Inform equipment of power CoS
     ["io.input_high.$input", "", "equipment.inform_power.$on_signal"],

@@ -1,21 +1,30 @@
 macros = [
     {}
 ]
-
+# arguments = [
+#     { name = "delay_interval", label = "Post-boot Delay", description = "The time in milliseconds to wait before sending input states after a cold boot.", type = "integer" },
+#     { name = "input", label = "Input Number", description = "The index of the digital input to report changes of state on.", type = "integer", max = $device.digital_inputs },
+#     { name = "report_index", label = "Report Index", description = "The report descriptor to send in on changes of state.", type = "integer" },
+#     { name = "event_signal", label = "Message Event Signal", description = "The signal to pack into the event message when built.", type = "integer" }
+# ]
 arguments = [
-	{ name = "Test987", label = "12V Low", description = "12V min value.", datatype = "integer", min = "0", max = "200" },
-	{ name = "A_low", label = "12V Low", description = "12V min value.", datatype = "integer", min = "100", max = "300" },
-    { name = "A_high", label = "12V High", description = "12V max value.", datatype = "integer", min = "100", max = "10000" },
-    { name = "B_low", label = "24V Low", description = "24V min value.", datatype = "boolean" },
-    { name = "B_high", label = "24V High", description = "24V max value.", datatype = "string" },
-	{ name = "report_index", label = "24V Low", description = "24V min value.", datatype = "integer" },
-	{ name = "below_signal", label = "24V Low", description = "24V min value.", datatype = "integer" },
-    { name = "above_signal", label = "24V High", description = "24V max value.", datatype = "integer" },
-	{ name = "debounce_interval", label = "Debounce Interval", description = "debounce interval.", datatype = "integer"},
-	{ name = "system_median", label = "System Median", description = "system median.", datatype = "integer"}
-]
-
+    { name = "boot_index", label = "Boot Index", description = "The signal which reports on boot when a threshold is crossed.", type = "integer", min = "0", max = "4294967295" },
+    { name = "A_low", label = "A(Low) ", description = "The lower bound of the A voltage threshold.", type = "integer", min = "0", max = "9223372036854775808" },
+    { name = "A_high", label = "A(High)", description = "The upper bound of the A voltage threshold.", type = "integer", min = "0", max = "9223372036854775808"  },
+    { name = "debounce_interval", label = "Debounce Interval", description = "The time in milliseconds to wait before sending a report message.", type = "integer", min = "0", max = "4294967295" },
+    { name = "system_median", label = "System Median", description = "The voltage which determines if we are running on 12V or 24V, value is based of a 0 based array.", type = "integer", min = "13", max = "23" },
+    { name = "B_low", label = "B(Low)", description = "The lower bound of the B voltage threshold.", type = "integer", min = "0", max = "9223372036854775808"  },
+    { name = "B_high", label = "B(High)", description = "The upper bound of the A voltage threshold.", type = "integer", min = "0", max = "9223372036854775808"  },
+    { name = "threshold_index", label = "Threshold Index", description = "The threshold register used to send register report.", type = "integer", min = "0", max = "4294967295" },
+    { name = "report_index", label = "Report Index", description = "The report descriptor to send in on changes of state", type = "integer", min = "0", max = "4294967295" },
+    { name = "below_signal", label = "Below Signal", description = "The below voltage threshold report signal to be sent.", type = "integer", min = "0", max = "4294967295"},
+    { name = "above_signal", label = "Above Signal", description = "The above voltage threshold report signal to be sent.", type = "integer", min = "0", max = "4294967295" },
+    { name = "state", label = "State", description = "The boolean used to illustrated a change of state which is used by threshold index to report signal.", type = "boolean" }
+] 
 lines = [
+    # Make sure we send at least once after boot.
+    ["power.power_up.0","", "kv.set.$boot_index.1"],
+
     # Send on crossing analog thresholds on 12V systems.
     ["adc.below_threshold.$A_low", "not timer.active.^above_timer", "timer.after.^below_timer.$debounce_interval"],
     ["adc.below_threshold.$A_low", "timer.active.^above_timer", "timer.cancel.^above_timer"],
@@ -31,6 +40,11 @@ lines = [
     ["adc.above_threshold.$B_high", "timer.active.^below_timer", "timer.cancel.^below_timer"],
 
     # Send register threshold reports after debounce interval.
-    ["timer.expired.^below_timer", "", "report.send_event.$report_index.$below_signal"],
-    ["timer.expired.^above_timer", "", "report.send_event.$report_index.$above_signal"],
+    ["timer.expired.^below_timer", "kv.exists.$threshold_index or kv.exists.$boot_index", "report.send_event.$report_index.$below_signal"],
+    ["timer.expired.^below_timer", "kv.exists.$threshold_index", "kv.delete.$threshold_index"],
+    ["timer.expired.^below_timer", "kv.exists.$boot_index", "kv.delete.$boot_index"],
+
+    ["timer.expired.^above_timer", "not kv.exists.$threshold_index or kv.exists.$boot_index", "report.send_event.$report_index.$above_signal"],
+    ["timer.expired.^above_timer", "", "kv.set.$threshold_index.$state"],
+    ["timer.expired.^above_timer", "kv.exists.$boot_index", "kv.delete.$boot_index"]
 ]

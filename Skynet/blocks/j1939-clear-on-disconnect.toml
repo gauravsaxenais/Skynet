@@ -1,7 +1,11 @@
 macros = [
     {}
 ]
-
+arguments = [
+    { name = "off_condition", label = "OFF Condition", description = "The boolean used to determine to send a low threshold on disconnect.", type = "boolean" },
+    { name = "report_index", label = "Report Index", description = "The report descriptor to send when in a low treshold.", type = "integer", min = "0", min = "0", max = "4294967295" },
+    { name = "index", label = "Index", description = "The integer which specifies which treshold to check within the repeated treshold field.", type = "integer",  min = "0", max = "4294967295" }
+] 
 lines = [
     # Send low threshold on disconnect.
     ["j1939.disconnected.0", "j1939.is_above_or_equal_threshold.$index and $off_condition", "report.send_event.$report_index.0"],

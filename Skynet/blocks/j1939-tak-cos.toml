@@ -1,7 +1,11 @@
 macros = [
     {}
 ]
-
+arguments = [
+    { name = "address", label = "Address", description = "The source memory address where a change occured.", type = "integer", min = "0", max = "4294967295" },
+    { name = "pointer", label = "Pointer", description = "The pointer location that changed.", type = "integer",  min = "0", max = "4294967295" },
+    { name = "read_index", label = "Read Index", description = "The index where a Read needs to be accomplished.", type = "integer", min = "0", max = "4294967295" }
+] 
 lines = [
     # Perform Read based appropriate Tak CoS.
     ["j1939.tak_memory_cos.$address.$pointer", "", "j1939.memory_read.$read_index"], 

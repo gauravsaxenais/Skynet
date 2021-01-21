@@ -1,8 +1,14 @@
 macros = [
     {}
 ]
+arguments = [
+    { name = "enable", label = "Enable", description = "The boolean value us to turn the bluetooth gateway ON", type = "boolean" },
+    { name = "disable", label = "Disable", description = "The boolean value us to turn the bluetooth gateway OFF", type = "boolean" }
+]
+lines = [
+    # Enable BLE gateway on enable if not in restricted mode.
+    ["$enable", "power.is_restricted_mode.0", "ble.enable_gateway.0"],
 
-arguments = [ 
-	{ name = "Enable", label = "", description = "", datatype = "boolean"},
-	{ name = "Disable", label = "", description = "", datatype = "boolean"}
+    # Disable BLE gateway upon recieving disable event.
+    ["$disable", "ble.is_gateway_enabled.0", "ble.disable_gateway.0"],
 ]

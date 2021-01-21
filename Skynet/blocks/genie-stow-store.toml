@@ -1,7 +1,9 @@
 macros = [
   {},
 ]
-
+arguments = [
+    { name = "stowed_register", label = "Stowed Register", description = "The integer used to define the stowed status.", type = "integer", min = "0", max = "4294967295" },
+]
 lines = [
   # On wake up check KV for stow
   ["power.power_or_wake_up.0", "kv.exists.$stow_register", "equipment.set_stowed_status.0"],

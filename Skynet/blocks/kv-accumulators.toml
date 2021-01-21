@@ -1,7 +1,11 @@
 macros = [
     {}
 ]
-
+arguments = [
+    { name = "start", label = "Start", description = "The boolean which enables the accumulator time increments.", type = "boolean" },
+    { name = "stop", label = "Stop", description = "The boolean which disables the accumulator time increments.", type = "boolean" },
+    { name = "acc_index", label = "Accumulator Index ", description ="The time accumulated.", type = "integer", min = "0", max = "4294967295" }
+]
 lines = [
     # Enable accumulator time increments.
     ["$start", "", "kv.start_accumulating_time.$acc_index"],

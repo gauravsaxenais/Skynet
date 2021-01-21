@@ -1,0 +1,24 @@
+macros = [
+	{},
+]
+arguments = [
+    { name = "timeout", label = "Timeout", description = "The value which starts the kill_switch timer.", type = "integer", min = "0", max = "4294967295" },
+    { name = "power_profile", label = "Power Profile", description = "The boolean which disables fault processing.", type = "boolean" },
+    { name = "input_determinate_key", label = "Input Determinate Key", description = "The integer which represents the kv index to observe.", type = "integer", min = "0", max = "4294967295" },
+	{ name = "input_determinate_value", label = "Input Determinate Key", description = "The intger which represents the kv value to compare against.", type = "integer", min = "0", max ="9223372036854775808" },
+]
+lines = [
+	["power.power_or_wake_up.0", "io.is_low.0 and io.is_low.1 and io.is_low.2 and io.is_low.3 or not kv.equal_to.$input_determinate_key.$input_determinate_value", "timer.after.^kill_switch.$timeout"],
+	["timer.expired.^kill_switch", "", "cron.wake_after.^wake.2"],    
+	["timer.expired.^kill_switch", "", "power.apply_profile.$power_profile"],
+
+	# Disable kill switch on transition of any input high.
+	["io.input_high.0", "kv.equal_to.$input_determinate_key.$input_determinate_value", "timer.cancel.^kill_switch"], 
+	["io.input_high.1", "kv.equal_to.$input_determinate_key.$input_determinate_value", "timer.cancel.^kill_switch"],
+	["io.input_high.2", "kv.equal_to.$input_determinate_key.$input_determinate_value", "timer.cancel.^kill_switch"],
+
+	# Restart kill switch when all inputs are low.
+	["io.input_low.0", "io.is_low.1 and io.is_low.2 and kv.equal_to.$input_determinate_key.$input_determinate_value", "timer.after.^kill_switch.$timeout"],
+	["io.input_low.1", "io.is_low.0 and io.is_low.2 and kv.equal_to.$input_determinate_key.$input_determinate_value", "timer.after.^kill_switch.$timeout"],
+	["io.input_low.2", "io.is_low.0 and io.is_low.1 and kv.equal_to.$input_determinate_key.$input_determinate_value", "timer.after.^kill_switch.$timeout"],
+]

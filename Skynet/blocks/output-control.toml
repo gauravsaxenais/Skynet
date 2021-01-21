@@ -1,7 +1,11 @@
 macros = [
 	{},
 ]
-
+arguments = [
+    { name = "index_on", label = "Index ON", description = "The integer which turns the io output HIGH.", type = "integer", min = "0", max = "4294967295" },
+    { name = "output", label = "Output", description = "The integer which determines which io pin to output to.", type = "integer", min = "0", max ="9223372036854775808" },
+    { name = "index_off", label = "Index OFF", description = "The integer which turns the io output HIGH.", type = "integer", min = "0", max = "4294967295" }
+]
 lines = [
 	["action.start.$index_on", "", "io.set_high.$output"],
 	["action.start.$index_on", "", "action.complete.$index_on"],

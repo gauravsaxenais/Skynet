@@ -1,4 +1,21 @@
+macros = [
+    {}
+]
 arguments = [
-	{ name = "active_profile", label = "Active profile", description = "test descp", datatype = "boolean" },
-    { name = "sleep_profile", label = "Sleep profile", description = "test descp", datatype = "boolean" }
+    { name = "active_profile", label = "Active Profile", description = "The integer denoting the device is ON.", type = "integer", min = "0", max = "4294967295" },
+    { name = "sleep_profile", label = "Sleep Profile", description = "The integer denoting that the device will turn OFF.", type = "integer", min = "0", max = "4294967295" },
+] 
+lines = [
+    # Apply active profile on power or wake.
+    ["power.power_or_wake_up.0", "power.is_restricted_mode.0", "power.apply_profile.$active_profile"],
+
+    # Apply sleep config when all inputs low.
+    ["io.input_low.0", "io.is_low.1 and io.is_low.2", "power.apply_profile.$sleep_profile"],
+    ["io.input_low.1", "io.is_low.0 and io.is_low.2", "power.apply_profile.$sleep_profile"],
+    ["io.input_low.2", "io.is_low.0 and io.is_low.1", "power.apply_profile.$sleep_profile"],
+
+    # Switch back to active profile when inputs go high.
+    ["io.input_high.0", "", "power.apply_profile.$active_profile"],
+    ["io.input_high.1", "", "power.apply_profile.$active_profile"],
+    ["io.input_high.2", "", "power.apply_profile.$active_profile"],
 ]
