@@ -3,7 +3,7 @@ macros = [
 ]
 arguments = [
     { name = "early_on_interval", label = "Early ON Interval", description = "The time in milliseconds IGN ON.", type = "integer", min = "0", max = "4294967295" },
-    { name = "on_interval", label = "ON Interval", description = "The period in milliseconds which IGN is ON.", type = "integer", min = "0", min = "0", max = "4294967295" },
+    { name = "on_interval", label = "ON Interval", description = "The period in milliseconds which IGN is ON.", type = "integer", min = "0", max = "4294967295" },
     { name = "report_index", label = "Report Index", description = "The integer which turns the io output HIGH.", type = "integer", min = "0", max = "4294967295" },
     { name = "sleep_profile", label = "Sleep Profile", description = "The integer which turns the io output HIGH.", type = "integer", min = "0", max = "4294967295" },
     { name = "delay_interval", label = "Delay Interval", description = "The time in milliseconds needed to wait before sending the report.", type = "integer", min = "0", max = "4294967295" },
