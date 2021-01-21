@@ -1,11 +1,9 @@
 [[devices]]
 name = "M7"
-url = "https://github.com/gauravsaxenais/Skynet.git"
+url = "https://github.com/PankajSingh07/ZTR_skynet.git"
 icon_url = ""
 
 [[devices]]
 name = "M7 Lite"
 url = "https://ztrldgit01.ztr.biz/skynet/dev/m7/main/app"
 icon_url = ""
-
-
