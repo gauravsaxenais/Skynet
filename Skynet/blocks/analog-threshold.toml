@@ -8,7 +8,7 @@ macros = [
 #     { name = "event_signal", label = "Message Event Signal", description = "The signal to pack into the event message when built.", type = "integer" }
 # ]
 arguments = [
-    { name = "boot_index", label = "Boot Index", description = "The signal which reports on boot when a threshold is crossed.", type = "integer", min = "0", max = "4294967295" },
+    { name = "boot_abc_asbdjasbdbasbdashjdhjasdas1213", label = "Boot Index", description = "The signal which reports on boot when a threshold is crossed.", type = "integer", min = "0", max = "4294967295" },
     { name = "A_low", label = "A(Low) ", description = "The lower bound of the A voltage threshold.", type = "integer", min = "0", max = "9223372036854775808" },
     { name = "A_high", label = "A(High)", description = "The upper bound of the A voltage threshold.", type = "integer", min = "0", max = "9223372036854775808"  },
     { name = "debounce_interval", label = "Debounce Interval", description = "The time in milliseconds to wait before sending a report message.", type = "integer", min = "0", max = "4294967295" },
