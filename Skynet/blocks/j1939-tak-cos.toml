@@ -1,11 +1,13 @@
 macros = [
     {}
 ]
+
 arguments = [
-    { name = "address", label = "Address", description = "The source memory address where a change occured.", type = "integer", min = "0", max = "4294967295" },
-    { name = "pointer", label = "Pointer", description = "The pointer location that changed.", type = "integer",  min = "0", max = "4294967295" },
-    { name = "read_index", label = "Read Index", description = "The index where a Read needs to be accomplished.", type = "integer", min = "0", max = "4294967295" }
-] 
+    { name = "address", label = "Address", description = "Source address of the controller that generated a change of state.", type = "integer" },
+    { name = "pointer", label = "Pointer", description = "Value indicating the memory location to read.", type = "integer" },
+    { name = "read_index", label = "Read Index", description = "Memory read to perform from the repeated fields.", type = "integer" }
+]
+
 lines = [
     # Perform Read based appropriate Tak CoS.
     ["j1939.tak_memory_cos.$address.$pointer", "", "j1939.memory_read.$read_index"], 

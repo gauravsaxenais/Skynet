@@ -1,12 +1,13 @@
 macros = [
     {}
 ]
-# TODO 
+
 arguments = [
-    { name = "index", label = "Index", description = "The integer index which refers to COS filed where a COS occured.", type = "integer",  min = "0", max = "4294967295" },
-    { name = "signal", label = "Signal", description = "The integer used to populated the signal field within the back office message.", type = "integer",  min = "0", max = "4294967295" },
-    { name = "report_index", label = "Report Index", description = "The integer used to popuialte the signal field within the back office message.", type = "integer",  min = "0", max = "4294967295" }
-] 
+    { name = "index", label = "Index", description = "Index to the J1939 change of state in the repeated field.", type = "integer" },
+    { name = "signal", label = "Signal", description = "The value indicating a change of state in accordance to the back office.", type = "integer" },
+    { name = "report_index", label = "Report Index", description = "Index to the report fields representing a J1939 change of state.", type = "integer" }
+]
+
 lines = [
     # Send J1939 CoS messages.
     ["j1939.cos.$index", "", "report.send_event.$report_index.$signal"], 

@@ -1,12 +1,14 @@
 macros = [
     {}
 ]
+
 arguments = [
-    { name = "frequency", label = "Frequency", description = "The time in milliseconds in which the Restricted Mode status would be analyzed.", type = "integer", min = "0", max = "4294967295" },
-    { name = "unrestricted_value", label = "Unrestricted Value", description = "The unrestricted record to write to the Restriced Mode Register.", type = "integer", min = "0", max ="9223372036854775808"},
-    { name = "rm_register", label = " Restricted Mode Register", description = "The Restricted Mode register where restricted and unrestricted values are stored.", type = "integer", min = "0", max = "4294967295" },
-    { name = "restricted_value", label = "Restricted Value", description = "The Restricted Mode record to write to the Restriced Mode register.", type = "integer", min = "0", max ="9223372036854775808" }
+    { name = "frequency", label = "Frequency", description = "Duration (ms) before determining restricted mode status.", type = "integer", min = "1" },
+    { name = "unrestricted_value", label = "Unrestricted Value", description = "Key value representing a unrestricted mode status.", type = "boolean" },
+    { name = "restricted_value", label = "Restricted Value", description = "Key value representing a restricted mode status.", type = "boolean" },
+    { name = "rm_register", label = "Restricted Mode Register", description = "Register storing the restricted mode.", type = "integer" },
 ]
+
 lines = [
     # Arm recurring timer for checking Restricted Mode status.
     ["power.power_or_wake_up.0", "", "timer.every.^rm_update.$frequency"],

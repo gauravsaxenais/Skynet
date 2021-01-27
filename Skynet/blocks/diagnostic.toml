@@ -1,9 +1,11 @@
 macros = [
     {}
 ]
+
 arguments = [
-    { name = "enable", label = "Enable", description = "The boolean used to enable diagnostic PGNs", type = "boolean" }
-] 
+    { name = "enable", label = "Enable", description = "The event to enable diagnostic PGNs.", type = "string" }
+]
+ 
 lines = [
     # Enable diagnostics PGNs upon recieving enable event.
     ["$enable", "", "diagnostic.enable.0"],

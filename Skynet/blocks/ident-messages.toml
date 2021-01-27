@@ -1,11 +1,13 @@
 macros = [
     {}
 ]
+
 arguments = [
-    { name = "report_index", label = "Report Index", description = "The report descriptor to send in on changes of state", type = "integer", min = "0", max = "4294967295" },
-    { name = "duration", label = "Signal", description = "The time in milleseconds to wait before sending a report message upon a cold boot.", type = "integer", min = "0", max = "4294967295 "}
+    { name = "report_index", label = "Report Index", description = "Index to the report fields representing an ident message.", type = "integer" },
+    { name = "duration", label = "Duration", description = "The time (ms) to wait to determine a valid device boot.", type = "integer", min = "1" }
 
 ]
+
 lines = [
     # Send in an ident message on cold boots.
     ["power.power_up.0", "", "timer.after.^0.$duration"],

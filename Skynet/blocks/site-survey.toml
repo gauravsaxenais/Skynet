@@ -1,11 +1,13 @@
 macros = [
     {}
 ]
+
 arguments = [
-    { name = "frequency", label = "Frequency", description = "The time in milliseconds that needs to expire in order to send a site survey message.", type = "integer", min = "0", max = "4294967295" },
-    { name = "enable", label = "Enable", description = "The boolean which enables the timer at the given frequency to send a site survey message.", type = "boolean" },
-    { name = "disable", label = "Disable", description = "The boolean which disables the timer.", type = "boolean" },
+    { name = "frequency", label = "Frequency", description = "The Rate (ms) of sending a site survey message.", type = "integer", min = "1" },
+    { name = "enable", label = "Enable", description = "Event which enables the site survey functionality.", type = "string" },
+    { name = "disable", label = "Disable", description = "Event which disables the site survey functionality.", type = "string" },
 ]
+
 lines = [
     # Send in site survey message when timer expires.
     ["$enable", "power.is_restricted_mode.0", "timer.every.^survey.$frequency"],

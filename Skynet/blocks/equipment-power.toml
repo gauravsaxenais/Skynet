@@ -1,13 +1,15 @@
 macros = [
     {}
 ]
+
 arguments = [
-    { name = "input", label = "Input", description = "The boolean which selects the index for the input that represents equipment power on.", type = "integer", min = "0", max = "9223372036854775808" },
-    { name = "on_signal", label = "ON Signal", description = "The boolean which indicates ON polarity.", type = "boolean" },
-    { name = "off_signal", label = "OFF Signal", description = "The boolean which indicates OFF polarity.", type = "boolean" }
+    { name = "input", label = "Input", description = "Input (0-based) indicating the power status.", type = "integer" },
+    { name = "on_signal", label = "ON Signal", description = "The value representing a ON equipment power status.", type = "boolean" },
+    { name = "off_signal", label = "OFF Signal", description = "The value representing a OFF equipment power status.", type = "boolean" }
 ]
+
 lines = [
     # Inform equipment of power CoS
     ["io.input_high.$input", "", "equipment.inform_power.$on_signal"],
     ["io.input_low.$input", "", "equipment.inform_power.$off_signal"],
- ]
+]

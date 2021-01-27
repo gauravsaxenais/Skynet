@@ -1,15 +1,17 @@
 macros = [
   {},
 ]
+
 arguments = [
-    { name = "input_index", label = "Input Index", description = "The integer which denotes the 0 based harness pin number.", type = "integer", min = "0", max = "9223372036854775808" },
+    { name = "input_index", label = "Input Index", description = "Input (0-based) to drive auto checkouts.", type = "integer", min = "0" },
 ]
+
 lines = [
   # Start and stop auto checkout
   # if input index low AND stowed then start auto checkout
   # if input index high OR unstowed then stop auto checkout
-  ["equipment.stowed.0", "io.is_low.$input_index", "keypad.start_autocheckout.0"],
-  ["io.input_low.$input_index", "equipment.is_stowed.0","keypad.start_autocheckout.0"],
-  ["equipment.unstowed.0", "", "keypad.stop_autocheckout.0"],
-  ["io.input_high.$input_index","", "keypad.stop_autocheckout.0"],
+    ["equipment.stowed.0", "io.is_low.$input_index", "keypad.start_autocheckout.0"],
+    ["io.input_low.$input_index", "equipment.is_stowed.0","keypad.start_autocheckout.0"],
+    ["equipment.unstowed.0", "", "keypad.stop_autocheckout.0"],
+    ["io.input_high.$input_index","", "keypad.stop_autocheckout.0"],
 ]

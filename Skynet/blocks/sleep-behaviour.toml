@@ -1,10 +1,12 @@
 macros = [
     {}
 ]
+
 arguments = [
-    { name = "active_profile", label = "Active Profile", description = "The integer denoting the device is ON.", type = "integer", min = "0", max = "4294967295" },
-    { name = "sleep_profile", label = "Sleep Profile", description = "The integer denoting that the device will turn OFF.", type = "integer", min = "0", max = "4294967295" },
-] 
+    { name = "active_profile", label = "Active Profile", description = "Profile which causes the unit to stay awake.", type = "integer" },
+    { name = "sleep_profile", label = "Sleep Profile", description = "Profile which causes the unit to sleep.", type = "integer" },
+]
+ 
 lines = [
     # Apply active profile on power or wake.
     ["power.power_or_wake_up.0", "power.is_restricted_mode.0", "power.apply_profile.$active_profile"],

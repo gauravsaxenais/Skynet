@@ -1,11 +1,13 @@
 macros = [
     {}
 ]
+
 arguments = [
-    { name = "enable_condition", label = "Enable Condition", description = "The boolean which describes if the '1' analog pin is HIGH.", type = "boolean" },
-    { name = "resync_report_index", label = "Resync Report Index", description = "The integer which defines j9193 fault resync message index.", type = "integer",  min = "0", max = "4294967295" },
-    { name = "fault_report_index", label = "Fault Report Index", description = "The integer which defines the j1939 fault report index.", type = "integer",  min = "0", max = "4294967295" }
-] 
+    { name = "enable_condition", label = "Enable Condition", description = "Filter ensuring that the ECU is on.", type = "string" },
+    { name = "resync_report_index", label = "Resync Report Index", description = "Index to the report fields representing a fault resync.", type = "integer" },
+    { name = "fault_report_index", label = "Fault Report Index", description = "Index to the report fields representing a fault.", type = "integer" }
+]
+
 lines = [
     # Send J1939 fault resync message if it has not already been sent.
     ["j1939.connected.0", "$enable_condition and not report.last_sent_within.$resync_report_index.0 and not timer.active.^resync", "timer.after.^resync.30000"],

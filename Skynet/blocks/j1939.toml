@@ -1,12 +1,14 @@
 macros = [
     {}
 ]
+
 arguments = [
-    { name = "enable", label = "Enable", description = "The boolean which enables fault processing.", type = "boolean" },
-    { name = "disable", label = "Disable", description = "The boolean which disables fault processing.", type = "boolean" },
-    { name = "comm_status_index", label = "Comms Index", description = "The integer twhich provides Comms report.", type = "integer", min = "0", max = "4294967295" },
-    { name = "can_reset", label = "CAN Reset", description = "The boolean which resets CAN.", type = "boolean" }
-] 
+    { name = "enable", label = "Enable", description = "Event which enables fault processing.", type = "string" },
+    { name = "disable", label = "Disable", description = "Event which disables fault processing.", type = "string" },
+    { name = "comm_status_index", label = "Comm Index", description = "Index to the report fields representing the J1939 connection status.", type = "integer", min = "0" },
+    { name = "can_reset", label = "CAN Reset", description = "Event which resets the CAN stack.", type = "string" }
+]
+
 lines = [
     # J1939 enable and disable.
     ["$enable", "", "j1939.enable.0"],

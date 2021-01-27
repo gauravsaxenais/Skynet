@@ -1,11 +1,13 @@
 macros = [
     {}
 ]
+
 arguments = [
-    { name = "index", label = "Index", description = "The boolean used to determine to send a low threshold on disconnect.", type = "boolean" },
-    { name = "frequency", label = "Frequency", description = "The time in milliseconds to wait in order to check CAN connection status.", type = "integer", min = "0", max = "4294967295" },
-    { name = "keyswitch_index", label = "Keyswitch Index", description = "The integer which represents where the keyswitch is located.", type = "integer", min = "0", max = "9223372036854775808" }
-] 
+    { name = "index", label = "Index", description = "Identifier of the back office action to process.", type = "boolean" },
+    { name = "frequency", label = "Frequency", description = "Frequency (ms) to heartbeat while we are disconnect. Must be less than the action timeout time.", type = "integer", min = "1" },
+    { name = "keyswitch_index", label = "Keyswitch Index", description = "Input (0-based) identifying the ECU key switch status.", type = "integer" }
+]
+
 lines = [
     # Complete on receiving.
     ["action.start.$index", "j1939.is_connected.0 and io.is_high.$keyswitch_index", "action.complete.$index"],

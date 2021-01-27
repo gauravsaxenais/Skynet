@@ -1,21 +1,22 @@
 macros = [
   {},
 ]
-arguments = [
-    { name = "stowed_input", label = "Stowed Input", description = "The integer used to define a change of state to trigger a value test of bitmasked j1939 data and equipement stow status.", type = "integer", min = "0", max = "9223372036854775808" },
-    { name = "debounce_timeout", label = "Debounce Timeout", description = "The time is miliseconds to be waited for debounced change of states.", type = "integer", min = "0", max = "4294967295" },
 
+arguments = [
+    { name = "stowed_input", label = "Stowed Input", description = "Input (0-based) indicating the stowed status.", type = "integer" },
+    { name = "debounce_timeout", label = "Debounce Timeout", description = "The time (ms) to wait before processing the stowed status.", type = "integer", min = "1" },
 ]
+
 lines = [
-  # Set stow status on stowed input high
-  ["io.input_high.$stowed_input", "", "equipment.set_stowed_status.0"], 
-  
-  # Start timer to check stow and keyswitch
-  ["io.input_low.$stowed_input", "", "timer.after.^unstow_debounce.$debounce_timeout"], 
-  
-  # Check for input high during unstow debounce, cancel if detected
-  ["io.input_high.$stowed_input", "timer.active.^unstow_debounce", "timer.cancel.^unstow_debounce"], 
-  
-  #  Check keyswitch to verify if stow signal was valid
-  ["timer.expired.^unstow_debounce", "io.is_high.$input_index", "equipment.clear_stowed_status.0"],
+     # Set stow status on stowed input high
+     ["io.input_high.$stowed_input", "", "equipment.set_stowed_status.0"], 
+     
+     # Start timer to check stow and keyswitch
+     ["io.input_low.$stowed_input", "", "timer.after.^unstow_debounce.$debounce_timeout"], 
+     
+     # Check for input high during unstow debounce, cancel if detected
+     ["io.input_high.$stowed_input", "timer.active.^unstow_debounce", "timer.cancel.^unstow_debounce"], 
+     
+     #  Check keyswitch to verify if stow signal was valid
+     ["timer.expired.^unstow_debounce", "io.is_high.$input_index", "equipment.clear_stowed_status.0"],
 ]

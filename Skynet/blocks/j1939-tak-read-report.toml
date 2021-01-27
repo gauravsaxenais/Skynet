@@ -1,11 +1,13 @@
 macros = [
     {}
 ]
+
 arguments = [
-    { name = "cos_index", label = "COS Index", description = "The index where a change of state occured.", type = "integer", min = "0", max = "4294967295" },
-    { name = "report_index", label = "Report Index", description = "The index where memory data is stored.", type = "integer", min = "0", max = "4294967295" },
-    { name = "event_signal", label = "Event Signal", description = "The event signal to be reported.", type = "integer", min = "0", max = "4294967295" }
-] 
+    { name = "cos_index", label = "CoS Index", description = "Index to the Takeuchi change of state (PGN 0x50B3) in the repeated field.", type = "integer" },
+    { name = "report_index", label = "Report Index", description = "The memory read message representing the controller response. ", type = "integer" },
+    { name = "event_signal", label = "Event Signal", description = "Signal indicating which memory read (0) in the report.", type = "integer" }
+]
+
 lines = [
     # Catch the change of state for Tak.
     ["j1939.cos.$cos_index", "", "j1939.tak_value_updated.$cos_index"], 
