@@ -1,0 +1,99 @@
+syntax = "proto3";
+
+package mod_07cf2e5faa8c44839318d5efe91e30c7;
+
+enum Allocator {
+  // This needs to be here as a zero value.
+  DO_NOT_REMOVE = 0;
+  VALUE = 3;
+};
+
+enum StandardEventCodes {
+  // Signal: The index of the dynamic flag which has transitioned.
+  DYNAMIC_TRANSITION = 0;
+
+  // Signal: The index of the dynamic flag which has transitioned to set.
+  DYNAMIC_TRANSITION_SET = 1;
+
+  // Signal: The index of the dynamic flag which has transitioned to clear.
+  DYNAMIC_TRANSITION_CLEAR = 2;
+
+  // Signal: The index of the static flag which has transitioned.
+  STATIC_TRANSITION = 3;
+
+  // Signal: The index of the static flag which has transitioned to set.
+  STATIC_TRANSITION_SET = 4;
+
+  // Signal: The index of the static flag which has transitioned to clear.
+  STATIC_TRANSITION_CLEAR = 5;
+};
+
+enum StandardFilterCodes {
+  // Signal: The index of the dynamic flag being queried.
+  IS_DYNAMIC_SET = 0;
+
+  // Signal: The index of the static flag being queried.
+  IS_STATIC_SET = 1;
+
+  // Signal: The index of the range from the array of ranges being tested to be high.
+  ALL_SET = 2;
+
+  // Signal: The index of the range from the array of ranges being tested to be low.
+  ALL_CLEAR = 3;
+};
+
+enum StandardActionCodes {
+  // Signal: The index of the dynamic flag being set.
+  SET_DYNAMIC = 0;
+
+  // Signal: The index of the dynamic flag being cleared.
+  CLEAR_DYNAMIC = 1;
+
+  // Signal: The index of the dynamic flag being flipped.
+  FLIP_DYNAMIC = 2;
+
+  // Signal: The index of the static flag being set.
+  SET_STATIC = 3;
+
+  // Signal: The index of the static flag being cleared.
+  CLEAR_STATIC = 4;
+
+  // Signal: The index of the static flag being flipped.
+  FLIP_STATIC = 5;
+
+  // Signal: Zero-based index of the range from the array of ranges to be set.
+  SET_RANGE = 6;
+
+  // Signal: Zero-based index of the range from the array of ranges to be cleared.
+  CLEAR_RANGE = 7;
+
+  // Signal: Zero-based index of the range from the array of ranges to be flipped.
+  FLIP_RANGE = 8;
+};
+
+message Config {
+  message Range {
+    enum Type {
+        // The resource is statically allocated.
+        STATIC = 0;
+
+        // The resource is dynamically allocated.
+        DYNAMIC = 1;
+    };
+
+  // The resource allocation type.
+  Type type = 1;
+
+  // Zero-based offset indicating the first flag to be accessed.
+  uint32 offset = 2;
+
+  // Mask indicating which flags to access.
+  uint64 mask = 3;
+  };
+
+  // Number of resources allocated through EDD.
+  uint32 resource_count = 1;
+
+  // An array of dynamic/static specified flag ranges.
+  repeated Range ranges = 2;
+};

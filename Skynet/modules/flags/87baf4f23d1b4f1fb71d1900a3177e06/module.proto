@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package mod_87baf4f23d1b4f1fb71d1900a3177e06;
+
+enum Allocator {
+    // This needs to be here as a zero value.
+    DO_NOT_REMOVE = 0;
+    VALUE = 3;
+};
+
+enum StandardEventCodes {
+    // Signal: The index of the flag which has transitioned.
+    TRANSITION = 0;
+    
+    // Signal: The index of the flag which has transitioned to set.
+    TRANSITION_SET = 1;
+    
+    // Signal: The index of the flag which has transitioned to clear.
+    TRANSITION_CLEAR = 2;
+};
+
+enum StandardFilterCodes {
+    // Signal: The index of the flag being queried.
+    IS_SET = 0;
+};
+
+enum ExtendedFilterCodes {
+    // Signal: The index of the least significant flag being tested.
+    // Modifier: A 32-bit mask specifying which of the next 32 flags should be tested to be high.
+    ALL_SET = 0;
+    
+    // Signal: The index of the least significant flag being tested.
+    // Modifier: A 32-bit mask specifying which of the next 32 flags should be tested to be low.
+    ALL_CLEAR = 1;
+};
+
+enum StandardActionCodes {
+    // Signal: The index of the flag being set.
+    SET = 0;
+    
+    // Signal: The index of the flag being cleared.
+    CLEAR = 1;
+    
+    // Signal: The index of the flag being flipped.
+    FLIP = 2;
+};
+
+enum ExtendedActionCodes {
+  // Signal: The index of the least significant flag to be set.
+  // Modifier: A 32-bit mask specifying which of the next 32 flags should be set.
+  SET_RANGE = 0;
+    
+  // Signal: The index of the least significant flag to be cleared.
+  // Modifier: A 32-bit mask specifying which of the next 32 flags should be cleared.
+  CLEAR_RANGE = 1;
+    
+  // Signal: The index of the least significant flag to be flipped.
+  // Modifier: A 32-bit mask specifying which of the next 32 flags should be flipped.
+  FLIP_RANGE = 2;
+};
+
+message Config {
+  // Number of resources allocated through EDD.
+  uint32 resource_count = 1;
+};
