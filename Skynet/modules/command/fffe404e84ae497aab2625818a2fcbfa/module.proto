@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package _fffe404e84ae497aab2625818a2fcbfa;
+package mod_fffe404e84ae497aab2625818a2fcbfa;
 
 enum Allocator {
-	// This needs to be here as a zero value.
-	DO_NOT_REMOVE = 0;
-	VALUE         = 1;
+  // This needs to be here as a zero value.
+  DO_NOT_REMOVE = 0;
+  VALUE         = 1;
 };
 
 enum StandardEventCodes {

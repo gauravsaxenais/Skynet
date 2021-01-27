@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package _abbbd3832ad747a0a1b0cd1b3c6d6579;
+package mod_abbbd3832ad747a0a1b0cd1b3c6d6579;
 
 enum Allocator {
   // This needs to be here as a zero value.
@@ -53,8 +53,6 @@ message Config {
     // How long to wait before applying this profile in seconds.
     uint32 delay_s = 3;
   };
- 
+
   repeated Profile profiles = 1;
-  uint32 test123 = 2;
-  bool test = 3;
 };

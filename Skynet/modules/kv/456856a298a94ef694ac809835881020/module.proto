@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package mod_1d376724b74c40bc86aa4ee57441b9dd;
+package mod_456856a298a94ef694ac809835881020;
 
 enum Allocator {
   // This needs to be here as a zero value.
@@ -12,6 +12,20 @@ enum Allocator {
 enum StandardFilterCodes {
   // Signal: Record to check for existence.
   EXISTS = 0;
+}
+
+enum ExtendedFilterCodes {
+  // Signal: Record to check for equality.
+  // Modifier: Value to check against.
+  EQUAL_TO = 0;
+
+  // Signal: Record to check for comparison.
+  // Modifier: Value to check against.
+  LESS_THAN = 1;
+
+  // Signal: Record to check for comparison.
+  // Modifier: Value to check against.
+  GREATER_THAN = 2;
 }
 
 enum StandardActionCodes {
