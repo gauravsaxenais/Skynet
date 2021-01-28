@@ -32,7 +32,7 @@ uuid = "69fdf7ae3d5011eab77f2e728ce88125"
 
 [[module]]
 name = "register"
-uuid = "e757221195064b5ba9a93be57b2967b1"
+uuid = "a0d76aa3becf4bdabf54ebc6c6c21945"
 
 [[module]]
 name = "j1939"
