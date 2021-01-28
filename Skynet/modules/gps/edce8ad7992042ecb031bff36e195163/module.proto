@@ -52,8 +52,8 @@ message Config {
   };
   
   // Set the dynamic platform model used for smoother results depending on type of expected motion.
-  DynamicModel dynamic_model = 2;
+  FixQualityType quality_type = 1;
 
   // A list of speed thresholds in km/h to use in the events/filters.
-  repeated uint32 speed_thresholds_kmh = 3;
+  repeated uint32 speed_thresholds_kmh = 2;
 }
