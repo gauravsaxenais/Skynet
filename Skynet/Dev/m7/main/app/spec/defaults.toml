@@ -92,20 +92,12 @@ reports = [
 
 [[module]]
 name = "register"
-uuid = "e757221195064b5ba9a93be57b2967b1"
+uuid = "a0d76aa3becf4bdabf54ebc6c6c21945"
 [module.config]
-analog_registers = [
-  {index = 3, arg = 2}, # External battery mV.
-  {index = 2, arg = 1}, # Internal battery mv.
-  {index = 6, arg = 0}, # Analog raw mV.
-]
-digital_registers = [
-  {config = {index = 0, arg = 4}, bit = 1}, # Analog threshold.
-]
-kv_registers = [
-  {index = 1, arg = 1}, # Restricted mode status.
-  {index = 4, arg = 4}, # Input 0 accumulator.
-  {index = 5, arg = 5}, # Input 1 accumulator.
+registers = [
+  {type = 0},
+  {type = 1, id = 39, arg = 300},
+  {type = 2, id = 3, arg = 120},
 ]
 
 [[module]]
@@ -132,7 +124,7 @@ uuid = "c609d032bc7844aba78ef3044d9fbec5"
 
 [[module]]
 name = "gps"
-uuid = "edce8ad7992042ecb031bff36e195163"
+uuid = "1e7710e2853642a4b7924afadeee0da6"
 
 [network]
 blocks = [
