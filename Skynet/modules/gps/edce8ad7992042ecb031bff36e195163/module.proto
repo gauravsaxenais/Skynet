@@ -50,4 +50,10 @@ message Config {
   EXCELLENT = 4;
   IDEAL = 5;
   };
+  
+  // Set the dynamic platform model used for smoother results depending on type of expected motion.
+  DynamicModel dynamic_model = 2;
+
+  // A list of speed thresholds in km/h to use in the events/filters.
+  repeated uint32 speed_thresholds_kmh = 3;
 }
