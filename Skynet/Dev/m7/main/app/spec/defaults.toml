@@ -121,6 +121,7 @@ sort_by = 4
 [[module]]
 name = "cron"
 uuid = "c609d032bc7844aba78ef3044d9fbec5"
+resource_count_test = 10
 
 [[module]]
 name = "gps"
