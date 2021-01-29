@@ -44,5 +44,5 @@ enum ExtendedActionCodes {
 
 message Config {
   // Number of resources allocated by goat.
-  uint32 resource_count = 1;
+  uint32 resource_count_test = 1;
 }
