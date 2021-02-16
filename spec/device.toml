@@ -1,11 +1,10 @@
 [device]
 name = "m7"
-description = "The M7 is ZTR's answer to the M8! Smaller, faster, better in everyway :)"
+description = "The M7 is ZTR's answer to the M8! Smaller, faster and better"
 digital_inputs = 3
 digital_outputs = 1
 analog_inputs = 1
 uarts = 1
-
 
 [[module]]
 name = "power"
